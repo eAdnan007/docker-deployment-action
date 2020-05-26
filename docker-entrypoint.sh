@@ -99,6 +99,10 @@ if ! [ -z "$INPUT_COPY_STACK_FILE" ] && [ $INPUT_COPY_STACK_FILE = 'true' ] ; th
   fi
 
   execute_ssh ${DEPLOYMENT_COMMAND} "$INPUT_ARGS" 2>&1
+  
+  if [ -n "$INPUT_POST_DEPLOYMENT_COMMAND" ]; then
+    execute_ssh ${INPUT_POST_DEPLOYMENT_COMMAND}
+  fi
 else
   echo "Connecting to $INPUT_REMOTE_DOCKER_HOST..."
   ${DEPLOYMENT_COMMAND} ${INPUT_ARGS} 2>&1
