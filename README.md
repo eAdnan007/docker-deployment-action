@@ -9,7 +9,7 @@ Below is a brief example on how the action can be used:
 
 ```yaml
 - name: Deploy to Docker swarm
-  uses: wshihadeh/docker-deployment-action@v1
+  uses: eAdnan007/docker-deployment-action@v1
   with:
     remote_docker_host: user@myswarm.com
     ssh_private_key: ${{ secrets.DOCKER_SSH_PRIVATE_KEY }}
@@ -20,6 +20,7 @@ Below is a brief example on how the action can be used:
     stack_file_name: docker-compose.yaml
     keep_files: 5
     args: my_applicaion
+    post_deployment_command: make build-prod
 ```
 
 ## Input Configurations
@@ -62,6 +63,8 @@ A boolean input to trigger docker prune command.
 The args for the pre deploument command. Applicable only for docker-compose.
 ### `pull_images_first`
 Pull docker images before deploying. Applicable only for docker-compose.
+### `post_deployment_command`
+Command to run after deployment is complete. Applicable only for docker-compose.
 
 ## License
 
